@@ -1,28 +1,35 @@
 {
   "app": {
-    "title": "🎬 Dizipal Movies",
+    "title": "🎬 Dizipal (Автообновление)",
     "version": "1.0"
   },
   "items": [
     {
-      "title": "Recep İvedik 6",
-      "subtitle": "Tam film",
-      "image": "https://img.youtube.com/vi/4wFFgQ-hxZQ/hqdefault.jpg",
+      "title": "Recep İvedik 7",
+      "subtitle": "Dizipal Film",
+      "image": "https://img.youtube.com/vi/abcdef123/hqdefault.jpg",
       "action": {
         "type": "web",
-        "url": "https://dizipal928.com/film/recep-ivedik-6"
+        "url": "https://dizipal928.com/film/recep-ivedik-7"
       }
     },
     {
       "title": "Kurtlar Vadisi",
-      "subtitle": "Tüm bölümler",
-      "image": "https://img.youtube.com/vi/ZyCivudFQv8/hqdefault.jpg",
+      "subtitle": "Dizipal Film",
+      "image": "https://img.youtube.com/vi/zyxwv987/hqdefault.jpg",
       "action": {
         "type": "web",
-        "url": "https://dizipal.xyz/dizi/kurtlar-vadisi"
+        "url": "https://dizipal928.com/dizi/kurtlar-vadisi"
       }
     },
     {
       "title": "Organize İşler 2",
-      "subtitle": "Netflix filmi",
-      "image":
+      "subtitle": "Dizipal Film",
+      "image": "https://img.youtube.com/vi/qwerty456/hqdefault.jpg",
+      "action": {
+        "type": "web",
+        "url": "https://dizipal928.com/film/organize-isler-2"
+      }
+    }
+  ]
+}
