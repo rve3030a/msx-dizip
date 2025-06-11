@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dizipal Plugin</title>
+  <script>
+    async function load() {
+      const res = await fetch("movies.json");
+      const data = await res.json();
+      window.msxData = data;
+    }
+    load();
+  </script>
+  <script src="https://msx.benzac.de/app/js/msx.js"></script>
+</head>
+<body>
+  <h1 style="text-align:center;">Загрузка...</h1>
+</body>
+</html>
