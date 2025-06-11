@@ -1,34 +1,25 @@
 {
   "app": {
-    "title": "🎬 Dizipal (Автообновление)",
+    "title": "🎬 HDRezka Movies",
     "version": "1.0"
   },
   "items": [
     {
-      "title": "Recep İvedik 7",
-      "subtitle": "Dizipal Film",
-      "image": "https://img.youtube.com/vi/abcdef123/hqdefault.jpg",
+      "title": "Мстители: Финал",
+      "subtitle": "HDRezka фильм",
+      "image": "https://static.hdrezka.ac/i/2023/avengers_endgame.jpg",
       "action": {
         "type": "web",
-        "url": "https://dizipal928.com/film/recep-ivedik-7"
+        "url": "https://hdrezka.ac/films/mstiteli-final/"
       }
     },
     {
-      "title": "Kurtlar Vadisi",
-      "subtitle": "Dizipal Film",
-      "image": "https://img.youtube.com/vi/zyxwv987/hqdefault.jpg",
+      "title": "Игра престолов",
+      "subtitle": "HDRezka сериал",
+      "image": "https://static.hdrezka.ac/i/2019/game_of_thrones.jpg",
       "action": {
         "type": "web",
-        "url": "https://dizipal928.com/dizi/kurtlar-vadisi"
-      }
-    },
-    {
-      "title": "Organize İşler 2",
-      "subtitle": "Dizipal Film",
-      "image": "https://img.youtube.com/vi/qwerty456/hqdefault.jpg",
-      "action": {
-        "type": "web",
-        "url": "https://dizipal928.com/film/organize-isler-2"
+        "url": "https://hdrezka.ac/series/igra-prestolov/"
       }
     }
   ]
