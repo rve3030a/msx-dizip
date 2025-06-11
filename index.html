@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Dizipal Plugin</title>
   <script>
     async function load() {
-      const res = await fetch("movies.json");
-      const data = await res.json();
-      window.msxData = data;
+      try {
+        const res = await fetch("movies.json");
+        const data = await res.json();
+        window.msxData = data;
+      } catch (e) {
+        document.body.innerHTML = "<h1 style='text-align:center; color:red;'>Ошибка загрузки данных</h1>";
+        console.error(e);
+      }
     }
     load();
   </script>
