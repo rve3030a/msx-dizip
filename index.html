@@ -1,37 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Fullscreen-out-bug</title>
+<meta charset="utf-8" />
+<title>PS4 12.50 WEBKIT CRASH TEST </title>
 <style>
-  body { background:#000; color:#0f0; font-family:monospace; padding:1em; }
-  h1  { color:#0ff; }
+  body {
+    background:#000; color:#0f0; font-family: monospace; padding:1em; text-align:center; margin:0;
+    transition: background-color .5s,color .5s;
+  }
+  .ellieLove {
+    position: fixed; bottom:20px; right:40px; color:#f0f; font-size:20px; font-weight:700;
+  }
+  #startBtn {
+    position: absolute; top:45%; left:50%; transform:translate(-50%,-50%);
+    padding:20px 40px; font-size:24px; background:#0f0; color:#000; border:none; border-radius:10px; cursor:pointer;
+  }
+  #instruction {
+    display:none; position:absolute; top:45%; left:50%; transform:translate(-50%,-50%);
+    width:100%; font-size:54px; animation:rgbShift 3s linear infinite;
+  }
+  @keyframes rgbShift {
+    0%,100%{color:#f00;}
+    33%{color:#0f0;}
+    66%{color:#00f;}
+  }
+  #languageSelector {
+    position: fixed; bottom:20px; left:20px; background:#111; color:#0f0;
+    border:1px solid #0f0; border-radius:8px; padding:5px 10px;
+    font-family: monospace; user-select:none; z-index:9999;
+    display:flex; align-items:center; gap:8px;
+  }
+  #languageSelector select {
+    background:#111; color:#0f0; border:none;
+    font-family: monospace; font-size:14px; cursor:pointer; outline:none;
+  }
+  .themeBtn {
+    padding:4px 10px; font-family: monospace; font-size:14px;
+    border:1px solid #0f0; border-radius:5px;
+    background:transparent; color:#0f0;
+    cursor:pointer; user-select:none;
+    transition: background-color .3s,color .3s;
+  }
+  .themeBtn.active {
+    background:#0f0; color:#000;
+  }
+  body.light-theme {
+    background:#fff; color:#060;
+  }
+  body.light-theme .ellieLove {
+    color:#a00;
+  }
+  body.light-theme #languageSelector {
+    background:#eee; color:#060; border-color:#060;
+  }
+  body.light-theme #languageSelector select {
+    background:#eee; color:#060;
+  }
+  body.light-theme .themeBtn {
+    border-color:#060; color:#060;
+  }
+  body.light-theme .themeBtn.active {
+    background:#060; color:#fff;
+  }
+  body.light-theme #startBtn {
+    background:#060; color:#fff;
+  }
 </style>
+<script>
+const translations={
+  en:{title:"PS4 12.50 WEBKIT CRASH TEST ",startBtn:"Start",instruction:"Press OPTIONS and Refresh the Page",ellieLove:"",lightTheme:"Light Theme",darkTheme:"Dark Theme"},
+  ru:{title:"ТЕСТ СБОЯ WEBKIT PS4 12.50 ",startBtn:"Старт",instruction:"Нажмите OPTIONS и обновите страницу",ellieLove:"",lightTheme:"Светлая тема",darkTheme:"Тёмная тема"},
+ };
+
+try {
+  if(performance.navigation.type===1||performance.getEntriesByType("navigation")[0].type==="reload")
+    (document.exitFullscreen||document.webkitExitFullscreen||document.mozCancelFullScreen||document.msExitFullscreen).call(document);
+}catch{}
+
+function start(){
+  const e=document.documentElement;
+  (e.requestFullscreen||e.webkitRequestFullscreen||e.mozRequestFullScreen||e.msRequestFullscreen).call(e);
+  document.getElementById("startBtn").style.display="none";
+  document.getElementById("instruction").style.display="block";
+}
+
+function changeLang(){
+  const lang=document.getElementById('lang').value;
+  if(!translations[lang])return;
+  const t=translations[lang];
+  document.title=t.title;
+  document.getElementById('title').innerText=t.title;
+  document.getElementById('startBtn').innerText=t.startBtn;
+  document.getElementById('instruction').innerText=t.instruction;
+  document.getElementById('ellieLove').innerText=t.ellieLove;
+  document.getElementById('lightBtn').innerText=t.lightTheme||"Light Theme";
+  document.getElementById('darkBtn').innerText=t.darkTheme||"Dark Theme";
+}
+
+function setTheme(theme){
+  if(theme==="light"){
+    document.body.classList.add("light-theme");
+    document.body.classList.remove("dark-theme");
+  } else {
+    document.body.classList.remove("light-theme");
+    document.body.classList.add("dark-theme");
+  }
+  localStorage.setItem("theme",theme);
+  document.getElementById('lightBtn').classList.toggle('active',theme==="light");
+  document.getElementById('darkBtn').classList.toggle('active',theme==="dark");
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const select=document.getElementById('lang');
+  let userLang=(navigator.language||navigator.userLanguage).toLowerCase().split('-')[0];
+  if(!translations[userLang])userLang='en';
+  select.value=userLang;
+  changeLang();
+  setTheme(localStorage.getItem("theme")||"dark");
+});
+</script>
 </head>
 <body>
-<h1>Fullscreen-out-bug</h1>
-<pre id="log"></pre>
-<script>
-const log = (...m)=>document.getElementById("log").textContent+=m.join(" ")+"\n";
-const hex = v=>"0x"+v.toString(16).padStart(8,"0");
-
-//------------- CONFIG -------------
-const PATTERN   = 0x43434343;   // patrón de spray
-const SPRAY_CNT = 60000;        // nº de buffers rociados
-const SPRAY_LEN = 16;           // uint32 por buffer
-//----------------------------------
-
-/* 1. Heap‑spray con backing stores contiguos */
-const spray=[];
-log("[*] Sprayeando "+SPRAY_CNT+" ArrayBuffers…");
-for(let i=0;i<SPRAY_CNT;i++){
-  const buf = new ArrayBuffer(SPRAY_LEN*4);
-  const u32  = new Uint32Array(buf);
-  for(let j=0;j<u32.length;j++) u32[j]=PATTERN;   // 0x43434343
-  spray.push({u32, f64:new Float64Array(buf)});
-}
-log("[+] Spray completado.");
-
-</script>
+<h1 id="title">PS4 12.50 WEBKIT CRASH TEST </h1>
+<button id="startBtn" onclick="start()">Start</button>
+<div id="instruction">Press OPTIONS and Refresh the Page</div>
+<div class="ellieLove" id="ellieLove"></div>
+<div id="languageSelector">
+  <select id="lang" onchange="changeLang()">
+    <option value="en" selected>English</option>
+    <option value="ru">Русский</option>
+    </select>
+  <button id="lightBtn" class="themeBtn" onclick="setTheme('light')">Light Theme</button>
+  <button id="darkBtn" class="themeBtn active" onclick="setTheme('dark')">Dark Theme</button>
+</div>
 </body>
 </html>
