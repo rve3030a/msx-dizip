@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>PS4 12.50 WEBKIT CRASH TEST By Çınar Güney</title>
+<title>PS4 12.50 WEBKIT CRASH TEST </title>
 <style>
   body {
     background:#000; color:#0f0; font-family: monospace; padding:1em; text-align:center; margin:0;
@@ -68,19 +68,9 @@
 </style>
 <script>
 const translations={
-  tr:{title:"PS4 12.50 WEBKIT CRASH TEST By Çınar Güney",startBtn:"Başlat",instruction:"OPTIONS tuşuna bas ve sayfayı yenile",ellieLove:"Ellie Çınarın Karısı",lightTheme:"Beyaz Tema",darkTheme:"Siyah Tema"},
-  en:{title:"PS4 12.50 WEBKIT CRASH TEST By Çınar Güney",startBtn:"Start",instruction:"Press OPTIONS and Refresh the Page",ellieLove:"Ellie, Çınar's Wife",lightTheme:"Light Theme",darkTheme:"Dark Theme"},
-  es:{title:"PRUEBA DE FALLA WEBKIT PS4 12.50 Por Çınar Güney",startBtn:"Iniciar",instruction:"Presiona OPTIONS y refresca la página",ellieLove:"Ellie, esposa de Çınar",lightTheme:"Tema Claro",darkTheme:"Tema Oscuro"},
-  fr:{title:"TEST DE CRASH WEBKIT PS4 12.50 Par Çınar Güney",startBtn:"Démarrer",instruction:"Appuyez sur OPTIONS et rafraîchissez la page",ellieLove:"Ellie, la femme de Çınar",lightTheme:"Thème Clair",darkTheme:"Thème Sombre"},
-  de:{title:"PS4 12.50 WEBKIT CRASH TEST Von Çınar Güney",startBtn:"Starten",instruction:"Drücke OPTIONS und lade die Seite neu",ellieLove:"Ellie, Çınars Ehefrau",lightTheme:"Helles Thema",darkTheme:"Dunkles Thema"},
-  it:{title:"TEST WEBKIT PS4 12.50 Di Çınar Güney",startBtn:"Avvia",instruction:"Premi OPTIONS e ricarica la pagina",ellieLove:"Ellie, la moglie di Çınar",lightTheme:"Tema Chiaro",darkTheme:"Tema Scuro"},
-  ru:{title:"ТЕСТ СБОЯ WEBKIT PS4 12.50 От Çınar Güney",startBtn:"Старт",instruction:"Нажмите OPTIONS и обновите страницу",ellieLove:"Элли, жена Чынара",lightTheme:"Светлая тема",darkTheme:"Тёмная тема"},
-  ar:{title:"اختبار تحطم WEBKIT PS4 12.50 بواسطة Çınar Güney",startBtn:"ابدأ",instruction:"اضغط OPTIONS وقم بتحديث الصفحة",ellieLove:"إيلي، زوجة جينار",lightTheme:"الوضع الفاتح",darkTheme:"الوضع الداكن"},
-  zh:{title:"PS4 12.50 WEBKIT 崩溃测试 作者 Çınar Güney",startBtn:"开始",instruction:"按 OPTIONS 并刷新页面",ellieLove:"Ellie，Çınar 的妻子",lightTheme:"浅色主题",darkTheme:"深色主题"},
-  ja:{title:"PS4 12.50 WEBKITクラッシュテスト 作成者 Çınar Güney",startBtn:"開始",instruction:"OPTIONSを押してページを更新してください",ellieLove:"エリー、Çınarの妻",lightTheme:"ライトテーマ",darkTheme:"ダークテーマ"},
-  ko:{title:"PS4 12.50 WEBKIT 크래시 테스트 작성자 Çınar Güney",startBtn:"시작",instruction:"OPTIONS를 누르고 페이지를 새로고침하세요",ellieLove:"엘리, Çınar의 아내",lightTheme:"라이트 테마",darkTheme:"다크 테마"},
-  pt:{title:"TESTE DE CRASH WEBKIT PS4 12.50 Por Çınar Güney",startBtn:"Iniciar",instruction:"Pressione OPTIONS e atualize a página",ellieLove:"Ellie, esposa de Çınar",lightTheme:"Tema Claro",darkTheme:"Tema Escuro"}
-};
+  en:{title:"PS4 12.50 WEBKIT CRASH TEST ",startBtn:"Start",instruction:"Press OPTIONS and Refresh the Page",ellieLove:"",lightTheme:"Light Theme",darkTheme:"Dark Theme"},
+  ru:{title:"ТЕСТ СБОЯ WEBKIT PS4 12.50 ",startBtn:"Старт",instruction:"Нажмите OPTIONS и обновите страницу",ellieLove:"",lightTheme:"Светлая тема",darkTheme:"Тёмная тема"},
+ };
 
 try {
   if(performance.navigation.type===1||performance.getEntriesByType("navigation")[0].type==="reload")
@@ -131,25 +121,15 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 </head>
 <body>
-<h1 id="title">PS4 12.50 WEBKIT CRASH TEST By Çınar Güney</h1>
+<h1 id="title">PS4 12.50 WEBKIT CRASH TEST </h1>
 <button id="startBtn" onclick="start()">Start</button>
 <div id="instruction">Press OPTIONS and Refresh the Page</div>
-<div class="ellieLove" id="ellieLove">Ellie Çınarın Karısı</div>
+<div class="ellieLove" id="ellieLove"></div>
 <div id="languageSelector">
   <select id="lang" onchange="changeLang()">
-    <option value="tr">Türkçe</option>
     <option value="en" selected>English</option>
-    <option value="es">Español</option>
-    <option value="fr">Français</option>
-    <option value="de">Deutsch</option>
-    <option value="it">Italiano</option>
     <option value="ru">Русский</option>
-    <option value="ar">العربية</option>
-    <option value="zh">中文</option>
-    <option value="ja">日本語</option>
-    <option value="ko">한국어</option>
-    <option value="pt">Português</option>
-  </select>
+    </select>
   <button id="lightBtn" class="themeBtn" onclick="setTheme('light')">Light Theme</button>
   <button id="darkBtn" class="themeBtn active" onclick="setTheme('dark')">Dark Theme</button>
 </div>
