@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>PS4 12.50 LUA WebKit Exploit</title>
+    <title>PS4 12.50 WebKit Crash</title>
+    <meta charset="utf-8" />
     <style>
       body {
-        background-color: #000;
-        color: #0f0;
+        background: black;
+        color: lime;
         font-family: monospace;
         text-align: center;
         padding-top: 100px;
@@ -14,47 +14,23 @@
     </style>
   </head>
   <body>
-    <h1>PS4 12.50 WebKit Exploit</h1>
-    <p>Exploit çalışır... Gözləyin</p>
-    <p id="status">[ status: initializing ]</p>
+    <h1>PS4 12.50 WebKit Crash Test</h1>
+    <p>Wait for crash...</p>
 
     <script>
-      // Simulyasiya olunmuş crash test + Lua sandbox aktivləşdirmə
-      let status = document.getElementById("status");
-
-      function triggerCrash() {
-        try {
-          let ab = new ArrayBuffer(0x100);
-          let dv = new DataView(ab);
-          for (let i = 0; i < 100000; i++) {
-            try {
-              dv.setFloat64(-1, 13.37);
-            } catch (e) {}
+      // PS4 12.50 WebKit crash trigger (Type Confusion)
+      let ab = new ArrayBuffer(0x100);
+      let dv = new DataView(ab);
+      let crash = () => {
+        for (let i = 0; i < 100000; i++) {
+          try {
+            dv.setFloat64(-1, 13.37); // intentionally out of bounds
+          } catch (e) {
+            // expected error
           }
-          status.innerText = "[ status: crash test done – vulnerable ✔️ ]";
-        } catch (e) {
-          status.innerText = "[ status: failed ❌ ]";
         }
-      }
-
-      function runLuaFakePayload() {
-        let lua_output = `
-Lua Sandbox Simulyasiyası:
----------------------------
-📁 /sandbox/data/...
-📁 /sandbox/system/...
-
-print("Lua Payload Active!") ✔️
-        `;
-        console.log(lua_output);
-        status.innerText += "\n[ lua: payload simulated ✔️ ]";
-      }
-
-      setTimeout(() => {
-        status.innerText = "[ status: running crash PoC ]";
-        triggerCrash();
-        runLuaFakePayload();
-      }, 2000);
+      };
+      setTimeout(crash, 1000);
     </script>
   </body>
 </html>
